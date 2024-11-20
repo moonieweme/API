@@ -59,7 +59,3 @@ def predict():
     except Exception as e:
         print(f"Error: {e}")  # Print the error to the logs for debugging
         return jsonify({"error": f"An error occurred while predicting: {e}"}), 500
-
-
-if __name__ == '__main__':
-    app.run(debug=True)

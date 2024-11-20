@@ -3,6 +3,7 @@ from flask_cors import CORS
 import numpy as np
 import keras
 import json
+import os
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -59,3 +60,8 @@ def predict():
     except Exception as e:
         print(f"Error: {e}")  # Print the error to the logs for debugging
         return jsonify({"error": f"An error occurred while predicting: {e}"}), 500
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Default to 5000 if PORT is not set
+    app.run(host="0.0.0.0", port=port)

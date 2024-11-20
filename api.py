@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Load your model (make sure to load the correct model file)
-model = keras.models.load_model("trainedStudentPreformanceModel.keras")
+model = keras.models.load_model("trainedStudentPerformanceModel.keras")
 
 @app.route('/predict', methods=['POST'])
 def predict():

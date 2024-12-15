@@ -20,43 +20,34 @@ def predict():
         print(f"Received data: {data}")  # Log received data to the terminal for debugging
 
         # Extract features from the data
-        hours_studied = data.get('hours_studied')
-        attendance = data.get('attendance')
-        parental_involvement = data.get('parental_involvement')
-        access_to_resources = data.get('access_to_resources')
-        extracurricular_activities = data.get('extracurricular_activities')
-        sleep_hours = data.get('sleep_hours')
-        previous_scores = data.get('previous_scores')
-        motivation_level = data.get('motivation_level')
-        internet_access = data.get('internet_access')
-        tutoring_sessions = data.get('tutoring_sessions')
-        family_income = data.get('family_income')
-        teacher_quality = data.get('teacher_quality')
-        school_type = data.get('school_type')
-        peer_influence = data.get('peer_influence')
-        physical_activity = data.get('physical_activity')
-        learning_disabilities = data.get('learning_disabilities')
-        parental_education_level = data.get('parental_education_level')
-        distance_from_home = data.get('distance_from_home')
-        gender = data.get('gender')
-
-        # Log the extracted data
-        print(f"Extracted features: {hours_studied}, {attendance}, {parental_involvement}, {access_to_resources}, {extracurricular_activities}, {sleep_hours}, {previous_scores}, {motivation_level}, {internet_access}, {tutoring_sessions}, {family_income}, {teacher_quality}, {school_type}, {peer_influence}, {physical_activity}, {learning_disabilities}, {parental_education_level}, {distance_from_home}, {gender}")
-
-        # Make sure all data is valid
         features_array = np.array([[
-            hours_studied, attendance, parental_involvement, access_to_resources, 
-            extracurricular_activities, sleep_hours, previous_scores, motivation_level, 
-            internet_access, tutoring_sessions, family_income, teacher_quality, 
-            school_type, peer_influence, physical_activity, learning_disabilities, 
-            parental_education_level, distance_from_home, gender
+            data.get('hours_studied'),
+            data.get('attendance'),
+            data.get('parental_involvement'),
+            data.get('access_to_resources'),
+            data.get('extracurricular_activities'),
+            data.get('sleep_hours'),
+            data.get('previous_scores'),
+            data.get('motivation_level'),
+            data.get('internet_access'),
+            data.get('tutoring_sessions'),
+            data.get('family_income'),
+            data.get('teacher_quality'),
+            data.get('school_type'),
+            data.get('peer_influence'),
+            data.get('physical_activity'),
+            data.get('learning_disabilities'),
+            data.get('parental_education_level'),
+            data.get('distance_from_home'),
+            data.get('gender')
         ]], dtype=np.float32)
 
-        # Model prediction (ensure your model is loaded and ready for prediction)
+        # Model prediction
         prediction = model.predict(features_array)
         print(f"Prediction: {prediction}")
 
-        return jsonify({"prediction": int(prediction[0][0])})  # Return prediction
+        # Return prediction
+        return jsonify({"prediction": int(prediction[0][0])})
     except Exception as e:
         print(f"Error: {e}")  # Print the error to the logs for debugging
         return jsonify({"error": f"An error occurred while predicting: {e}"}), 500
